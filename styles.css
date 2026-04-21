@@ -335,6 +335,13 @@ footer p {
     height: auto;
     border-radius: var(--radius);
     display: block;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.media-grid img:hover,
+.media-grid video:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px var(--shadow-color);
 }
 
 .media-grid audio {
