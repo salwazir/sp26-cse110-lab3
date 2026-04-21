@@ -1,0 +1,465 @@
+/* ==========================================================================
+   Lab 3 - Pomodoro Timer Meeting Minutes
+   External Stylesheet (bulk of the CSS lives here)
+   Author: Solaiman Alwazir
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS Variables (Custom Properties) with fallbacks demonstrated below
+   -------------------------------------------------------------------------- */
+:root {
+    --primary-color: #2c3e50;                                 /* hex color */
+    --accent-color: hsl(210, 75%, 45%);                       /* hsl color */
+    --accent-color-soft: hsla(210, 75%, 45%, 0.15);           /* hsla color */
+    --bg-color: rgb(250, 248, 242);                           /* rgb color */
+    --card-bg: rgba(255, 255, 255, 0.97);                     /* rgba color */
+    --text-color: #1f2933;
+    --muted-text: dimgray;                                    /* named color */
+    --border-color: #d0d7de;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --header-gradient: color-mix(in srgb, #2c3e50 70%, #1a5490 30%); /* color-mix() */
+    --wide-gamut-blue: color(display-p3 0.2 0.45 0.85);       /* wider-gamut color() */
+    --radius: 10px;
+    --max-content: 1100px;
+}
+
+/* --------------------------------------------------------------------------
+   Universal Selector (*) - reset box model so padding/border don't blow
+   out element width calculations
+   -------------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Element Selectors + Selector List
+   -------------------------------------------------------------------------- */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;                          /* absolute unit: px */
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;  /* 3rd party font */
+    background-color: var(--bg-color, whitesmoke); /* CSS variable with fallback */
+    color: var(--text-color, black);
+    margin: 0;                                /* margin shorthand */
+    padding: 0;                               /* padding shorthand */
+    line-height: 1.6;
+    min-height: 100vh;                        /* relative unit: vh */
+}
+
+/* Selector List - apply the same rules to multiple selectors at once */
+h1, h2, h3 {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Header - uses CSS Nesting (adopted 2023) and position: relative
+   -------------------------------------------------------------------------- */
+header {
+    background: var(--header-gradient);
+    color: #ffffff;
+    padding: 2rem 1.5rem;                     /* padding shorthand, rem = relative unit */
+    margin-bottom: 1.5em;                     /* em = relative unit */
+    border-bottom: 4px solid var(--accent-color);
+    position: relative;                       /* position: relative */
+
+    /* Nested selectors - new in 2023. `&` refers to `header` */
+    & h1 {
+        margin-bottom: 0.25rem;
+        color: #ffffff;
+        font-size: 2.25rem;
+        letter-spacing: 0.5pt;                /* absolute unit: pt */
+    }
+
+    & p {
+        margin: 0.35rem 0;
+        color: rgba(255, 255, 255, 0.95);
+    }
+
+    & nav {
+        margin-top: 1.25rem;
+    }
+}
+
+nav h2 {
+    color: #ffffff;
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Flexbox layout for the top navigation
+   - more than two children (7 <li>s)
+   - uses flex-wrap, justify-content, gap, align-items (4 flex attributes)
+   -------------------------------------------------------------------------- */
+.nav-list {
+    display: flex;                            /* Flex */
+    flex-wrap: wrap;                          /* flex attribute */
+    justify-content: flex-start;              /* flex attribute */
+    align-items: center;                      /* flex attribute */
+    gap: 0.5rem;                              /* flex attribute */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Child combinator: only direct <li> children of .nav-list */
+.nav-list > li {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Descendant combinator (nav a) */
+nav a {
+    color: #ffffff;
+    text-decoration: none;                    /* text-decoration */
+}
+
+/* Pseudo-class selectors (:hover, :active) combined with element selector */
+nav a:hover {
+    text-decoration: underline;
+}
+
+.nav-list > li:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+nav a:active {
+    color: #ffd966;
+}
+
+/* --------------------------------------------------------------------------
+   Main content container - margin: auto for horizontal centering
+   -------------------------------------------------------------------------- */
+main {
+    max-width: var(--max-content);            /* max-width */
+    min-width: 280px;                         /* min-width */
+    width: 92%;                               /* width, % = relative unit */
+    margin: 0 auto;                           /* auto margins */
+    padding: 0 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Class selector (.card) with explicit longhand margin/padding and
+   longhand border properties (border-style, border-color, border-width)
+   -------------------------------------------------------------------------- */
+.card {
+    background-color: var(--card-bg, white);
+    /* Longhand padding */
+    padding-top: 1.5rem;
+    padding-right: 1.75rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.75rem;
+    /* Longhand margin */
+    margin-top: 1rem;
+    margin-right: 0;
+    margin-bottom: 1.5rem;
+    margin-left: 0;
+    /* Longhand border properties */
+    border-style: solid;                      /* border-style */
+    border-color: var(--border-color);        /* border-color */
+    border-width: 1px;                        /* border-width */
+    border-radius: var(--radius);             /* border-radius */
+    box-shadow: 0 2px 8px var(--shadow-color);
+    width: 100%;                              /* width */
+    height: auto;                             /* height */
+}
+
+/* Combining two selectors: section.card (element + class on the same element) */
+section.card {
+    scroll-margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   ID selectors
+   -------------------------------------------------------------------------- */
+#attendance {
+    background-color: color-mix(in srgb, var(--accent-color-soft) 60%, white);
+}
+
+#feedback-form {
+    border-left-width: 6px;                   /* longhand border-width for one side */
+    border-left-color: var(--accent-color);   /* longhand border-color for one side */
+    border-left-style: solid;                 /* longhand border-style for one side */
+}
+
+/* --------------------------------------------------------------------------
+   Attribute Selectors
+   -------------------------------------------------------------------------- */
+input[type="text"],
+input[type="date"] {
+    padding: 0.4rem 0.6rem;                   /* padding shorthand */
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1em;
+}
+
+a[href^="http"] {
+    color: var(--wide-gamut-blue);
+    text-decoration: underline;               /* text-decoration */
+}
+
+/* Combining: element + attribute selector on same element */
+a[target="_blank"]::after {
+    content: " \2197";                        /* north-east arrow glyph */
+    font-size: 0.85em;
+}
+
+/* --------------------------------------------------------------------------
+   Text styling
+   -------------------------------------------------------------------------- */
+.card h2 {
+    color: var(--primary-color);              /* color */
+    text-align: left;                         /* text-align */
+    margin-bottom: 0.75rem;
+}
+
+footer p {
+    text-align: center;                       /* text-align */
+    color: var(--muted-text);
+    margin: 0.25rem 0;
+}
+
+.highlight {
+    color: var(--accent-color);               /* color */
+    text-decoration: underline dashed;        /* text-decoration */
+}
+
+/* --------------------------------------------------------------------------
+   Display values - using all four (none, block, inline-block, inline)
+   -------------------------------------------------------------------------- */
+.hidden {
+    display: none;                            /* display: none */
+}
+
+.block-note {
+    display: block;                           /* display: block */
+    padding: 0.75rem;
+    background-color: var(--accent-color-soft);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 4px;
+    margin-top: 0.75rem;
+}
+
+.inline-tag {
+    display: inline-block;                    /* display: inline-block */
+    background-color: var(--accent-color-soft);
+    color: var(--accent-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin: 0 0.25rem;
+    font-size: 0.9em;
+}
+
+.inline-label {
+    display: inline;                          /* display: inline */
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Attendance - Flexbox demo on the "Present" list (4 children)
+   -------------------------------------------------------------------------- */
+.attendance-flex {
+    display: flex;                            /* flex */
+    flex-direction: row;                      /* flex attribute */
+    flex-wrap: wrap;                          /* flex attribute */
+    gap: 0.5rem;                              /* flex attribute */
+    list-style: none;
+    padding: 0;
+}
+
+.attendance-flex li {
+    background-color: var(--accent-color-soft);
+    border-radius: 4px;
+    padding: 0.35rem 0.7rem;
+}
+
+/* --------------------------------------------------------------------------
+   Media section - CSS Grid (3 children: image, audio, video)
+   - Uses grid-template-columns, gap, grid-auto-rows, grid-template-areas
+     (4 grid attributes, requirement is 3+)
+   -------------------------------------------------------------------------- */
+.media-grid {
+    display: grid;                            /* grid */
+    grid-template-columns: repeat(2, 1fr);    /* grid attribute, fr = relative unit */
+    gap: 1rem;                                /* grid attribute */
+    grid-auto-rows: minmax(140px, auto);      /* grid attribute */
+    grid-template-areas:                      /* grid attribute */
+        "image image"
+        "audio video";
+    margin-top: 1rem;
+}
+
+.media-image { grid-area: image; }
+.media-audio { grid-area: audio; }
+.media-video { grid-area: video; }
+
+.media-grid img,
+.media-grid video {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    display: block;
+}
+
+.media-grid audio {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Combinators
+   -------------------------------------------------------------------------- */
+
+/* Descendant combinator: .card p (already covered above via .card h2,
+   but adding another explicit example here) */
+.card ul {
+    padding-left: 1.5rem;
+}
+
+/* Child combinator (element > element) */
+ol > li {
+    margin-bottom: 0.35rem;
+}
+
+/* Adjacent sibling combinator (element + element) - style the <ul> that
+   immediately follows an <h3> */
+h3 + ul {
+    margin-top: 0.5rem;
+}
+
+/* General sibling combinator (element ~ element) - style all <p> siblings
+   that come after the first <h2> in a section */
+h2 ~ p {
+    color: var(--text-color);
+}
+
+/* --------------------------------------------------------------------------
+   :has() selector (adopted widely 2023)
+   -------------------------------------------------------------------------- */
+section:has(details) {
+    background-color: color-mix(in srgb, var(--accent-color-soft) 40%, white);
+}
+
+section:has(h3) {
+    border-top: 1mm solid transparent;        /* absolute unit: mm */
+}
+
+/* --------------------------------------------------------------------------
+   Form styling
+   -------------------------------------------------------------------------- */
+form fieldset {
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+}
+
+form legend {
+    font-weight: 700;
+    color: var(--primary-color);
+    padding: 0 0.5rem;
+}
+
+form button[type="submit"] {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.25rem;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+form button[type="submit"]:active {          /* :active pseudo-class */
+    transform: translateY(0);
+    background-color: #14293f;
+}
+
+/* --------------------------------------------------------------------------
+   Position demonstrations
+   - header: position: relative (above)
+   - .back-to-top: position: fixed
+   - footer: position: static (default, declared explicitly for clarity)
+   -------------------------------------------------------------------------- */
+.back-to-top {
+    position: fixed;                          /* position: fixed */
+    right: 1rem;
+    bottom: 1rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.6rem 0.9rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    font-weight: 600;
+    z-index: 10;
+}
+
+.back-to-top:hover {
+    background-color: var(--accent-color);
+}
+
+footer {
+    position: static;                         /* position: static */
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Media Query - Responsiveness based on screen width
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+    header {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .media-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "image"
+            "audio"
+            "video";
+    }
+
+    main {
+        padding: 0 0.75rem;
+    }
+
+    .back-to-top {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.85em;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    main {
+        padding: 0 2rem;
+    }
+
+    .media-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

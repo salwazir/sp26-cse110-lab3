@@ -9,6 +9,30 @@
     >
     <link rel="icon" href="favicon.ico">
     <title>Pomodoro Timer First Brainstorm - Meeting Minutes</title>
+
+    <!-- 3rd party Google Font (loaded in HTML) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    >
+
+    <!-- External CSS stylesheet (preferred, main method) -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Internal CSS using <style> element (convenient for quick experiments) -->
+    <style>
+      /* Internal style: a subtle highlight for the recorder badge */
+      .recorder-badge {
+        display: inline-block;
+        background-color: #fff3cd;
+        color: #664d03;
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -17,7 +41,7 @@
       <p><strong>Date:</strong> April 14, 2026</p>
       <nav>
         <h2>Page Navigation</h2>
-        <ul>
+        <ul class="nav-list">
           <li><a href="#attendance">Attendance</a></li>
           <li><a href="#agenda">Agenda</a></li>
           <li><a href="#unfinished-business">Unfinished Business</a></li>
@@ -27,37 +51,41 @@
           <li><a href="#feedback-form">Feedback Form</a></li>
         </ul>
       </nav>
-      <hr>
     </header>
 
     <main>
-      <section>
+      <section class="card">
         <h2>Meeting Overview</h2>
         <p>
           This document records the first team meeting for the
           <b>Pomodoro Timer</b> project. The goal of the session was to discuss
           the initial feature set, sketch a rough plan, and assign next steps.
         </p>
-        <p>
+
+        <!-- Inline CSS example (helpful for debugging) -->
+        <p style="font-style: italic; color: #555; border-left: 3px solid #c0c6cf; padding-left: 0.75rem;">
           Team members were encouraged to share <i>early ideas</i> freely, while
           the final decisions in these minutes reflect the group's
           <em>most important takeaways</em>.
         </p>
-        <p>
+
+        <p class="highlight">
           For reference, the team repo can be linked here:
           <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>.
           <br>
           Additional notes can be added later as the project evolves.
         </p>
-        <div>
-          <span>Recorder:</span> Alex Chen
+        <div class="recorder-line">
+          <span class="inline-label">Recorder:</span>
+          <span class="recorder-badge">Alex Chen</span>
+          <span class="inline-tag">Lead</span>
         </div>
       </section>
 
-      <section id="attendance">
+      <section id="attendance" class="card">
         <h2>Attendance</h2>
         <h3>Present</h3>
-        <ul>
+        <ul class="attendance-flex">
           <li>Alex Chen</li>
           <li>Maya Patel</li>
           <li>Jordan Kim</li>
@@ -69,7 +97,7 @@
         </ul>
       </section>
 
-      <section id="agenda">
+      <section id="agenda" class="card">
         <h2>Agenda</h2>
         <ol>
           <li>Review project idea and define scope</li>
@@ -79,7 +107,7 @@
         </ol>
       </section>
 
-      <section id="unfinished-business">
+      <section id="unfinished-business" class="card">
         <h2>Unfinished Business</h2>
         <p>
           Since this was the first meeting, there was no unfinished business
@@ -93,7 +121,7 @@
         </ul>
       </section>
 
-      <section id="new-business">
+      <section id="new-business" class="card">
         <h2>New Business</h2>
         <h3>Ideas Discussed</h3>
         <ul>
@@ -110,9 +138,12 @@
           <li>Jordan will sketch a low-fidelity layout.</li>
           <li>Sam will prepare a short requirements summary.</li>
         </ol>
+        <p class="block-note">
+          Note: All action items should be finished before the next standup.
+        </p>
       </section>
 
-      <section id="miscellaneous">
+      <section id="miscellaneous" class="card">
         <h2>Miscellaneous Comments, Questions, and Concerns</h2>
         <details>
           <summary>Open discussion notes</summary>
@@ -128,34 +159,36 @@
         </details>
       </section>
 
-      <section id="media">
+      <section id="media" class="card">
         <h2>Pictures and Recordings</h2>
-        <h3>Whiteboard Diagram</h3>
-        <p>
-          The image below represents the rough system sketch shown during the
-          meeting.
-        </p>
-        <img
-          src="assets/brainstorm-diagram.png"
-          alt="A whiteboard sketch of the Pomodoro Timer layout and workflow"
-          width="480"
-        >
-
-        <h3>Audio Recording</h3>
-        <audio controls>
-          <source src="assets/meeting-audio.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-
-        <h3>Video Recording</h3>
-        <video controls width="480">
-          <source src="assets/meeting-video.mp4" type="video/mp4">
-          <source src="assets/meeting-video.webm" type="video/webm">
-          Your browser does not support the video element.
-        </video>
+        <div class="media-grid">
+          <div class="media-image">
+            <h3>Whiteboard Diagram</h3>
+            <p>The image below represents the rough system sketch shown during the meeting.</p>
+            <img
+              src="assets/brainstorm-diagram.png"
+              alt="A whiteboard sketch of the Pomodoro Timer layout and workflow"
+            >
+          </div>
+          <div class="media-audio">
+            <h3>Audio Recording</h3>
+            <audio controls>
+              <source src="assets/meeting-audio.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="media-video">
+            <h3>Video Recording</h3>
+            <video controls>
+              <source src="assets/meeting-video.mp4" type="video/mp4">
+              <source src="assets/meeting-video.webm" type="video/webm">
+              Your browser does not support the video element.
+            </video>
+          </div>
+        </div>
       </section>
 
-      <section id="feedback-form">
+      <section id="feedback-form" class="card">
         <h2>Quick Form</h2>
         <p>
           This form is included to demonstrate standard HTML form elements.
@@ -234,10 +267,12 @@
       </section>
     </main>
 
+    <!-- Fixed "back to top" link demonstrates position: fixed -->
+    <a href="#" class="back-to-top" aria-label="Back to top">&uarr; Top</a>
+
     <footer>
-      <hr>
-      <p>Meeting minutes prepared for CSE 110 Lab 2.</p>
-      <p>Last updated: April 14, 2026</p>
+      <p>Meeting minutes prepared for CSE 110 Lab 3.</p>
+      <p>Last updated: April 19, 2026</p>
     </footer>
   </body>
 </html>
