@@ -498,3 +498,19 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* Respect user accessibility preferences - disable transitions and hover
+   transforms for visitors who have requested reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .nav-list > li:hover,
+    .media-grid img:hover,
+    .media-grid video:hover,
+    form button[type="submit"]:hover {
+        transform: none;
+    }
+}
