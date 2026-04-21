@@ -386,6 +386,24 @@ section:has(h3) {
     border-top: 1mm solid transparent;        /* absolute unit: mm */
 }
 
+/* Additional :has() - cards that contain an ordered list get a left marker */
+.card:has(ol) {
+    border-left: 4px solid var(--accent-color-soft);
+}
+
+/* Additional nested selectors - style the form and its descendants at once */
+form {
+    margin-top: 0.5rem;
+
+    & fieldset {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    & p {
+        margin: 0.5rem 0;
+    }
+}
+
 /* --------------------------------------------------------------------------
    Form styling
    -------------------------------------------------------------------------- */
