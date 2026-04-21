@@ -4,7 +4,9 @@ CSE 110 - Spring 2026
 
 ## GitHub Pages URL
 
-https://salwazir.github.io/sp26-cse110-lab3/
+Live at: https://salwazir.github.io/sp26-cse110-lab3/
+
+Status: built and served over HTTPS from `main` branch (root).
 
 ## Overview
 
