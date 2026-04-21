@@ -2,6 +2,26 @@
    Lab 3 - Pomodoro Timer Meeting Minutes
    External Stylesheet (bulk of the CSS lives here)
    Author: Solaiman Alwazir
+
+   Table of Contents
+   -----------------
+   1. CSS Variables (Custom Properties)
+   2. Universal + Element Selectors + Selector List
+   3. Header + CSS Nesting
+   4. Navigation Flexbox
+   5. Main Content Container
+   6. Card Class + Combining Selectors
+   7. ID Selectors
+   8. Attribute Selectors
+   9. Text Styling
+  10. Display Values
+  11. Attendance Flexbox
+  12. Media Grid
+  13. Combinators (descendant, child, adjacent, general sibling)
+  14. :has() Selector
+  15. Form Styling
+  16. Position (fixed, static, relative)
+  17. Media Queries (responsive breakpoints)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
