@@ -63,3 +63,15 @@
 ## Parking Lot (topics to revisit later)
 
 -
+
+## Communication Channels
+
+- **Slack / Discord:**
+- **Issue tracker:** GitHub Issues
+- **Docs:**
+
+## Next Standup
+
+- **Date:** YYYY-MM-DD
+- **Time:** HH:MM (timezone)
+- **Facilitator:**
